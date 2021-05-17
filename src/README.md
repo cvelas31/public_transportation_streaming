@@ -241,7 +241,17 @@ Once the server is running, you may hit `Ctrl+C` at any time to exit.
   - Remove Previous using API
   - Or [change compatibilities](https://docs.confluent.io/platform/current/schema-registry/develop/using.html#sr-top-level-config)
 - [Cleanup policy](https://medium.com/@sunny_81705/kafka-log-retention-and-cleanup-policies-c8d9cb7e09f8#:~:text=In%20Kafka%2C%20unlike%20other%20messaging,Its%20a%20Topic%20level%20configuration.)
+- If the setup contains less number of brokers than number of partitions it will get empty messages
 - Connector Validation:
   - Connector can only have strings
-  - curl localhost:8083/connectors
+  - `curl localhost:8083/connectors`
   - Connect to postgres: `psql postgres://cta_admin:chicago@localhost:5432/cta`
+  - [Topic from connect](https://docs.confluent.io/platform/current/connect/references/restapi.html#topics)
+- Topic validation
+  - `kafka-topics --list --zookeeper localhost:2181`
+- Delete topics
+  - `kafka-topics --delete --topic "topic_name" --zookeeper localhost:2181`
+- Consume topic
+  - `kafka-console-consumer --topic "topic_name" --bootstrap-server PLAINTEXT://localhost:9092 --from-beginning`
+- Parititons:
+  - https://www.confluent.io/blog/how-choose-number-topics-partitions-kafka-cluster/

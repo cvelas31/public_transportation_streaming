@@ -12,7 +12,8 @@ logger = logging.getLogger(__name__)
 
 
 class Turnstile(Producer):
-    key_schema = avro.load(f"{Path(__file__).parents[0]}/schemas/turnstile_key.json")
+    key_schema = avro.load(
+        f"{Path(__file__).parents[0]}/schemas/turnstile_key.json")
 
     #
     # TODO: Define this value schema in `schemas/turnstile_value.json, then uncomment the below
@@ -38,9 +39,9 @@ class Turnstile(Producer):
         #
         #
         super().__init__(
-            f"com.transportation.stations.{station_name}.turnstile", # TODO: Come up with a better topic name
+            f"com.transportation.turnstile",  # TODO: Come up with a better topic name
             key_schema=Turnstile.key_schema,
-            value_schema=Turnstile.value_schema, #TODO: Uncomment once schema is defined
+            value_schema=Turnstile.value_schema,  # TODO: Uncomment once schema is defined
             num_partitions=1,
             num_replicas=1,
         )

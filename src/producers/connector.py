@@ -27,7 +27,7 @@ def configure_connector():
         "key.converter.schemas.enable": "false",
         "value.converter": "org.apache.kafka.connect.json.JsonConverter",
         "value.converter.schemas.enable": "false",
-        "topic.prefix": "conn_prefix_",
+        "topic.prefix": "com.connect.transportation.",
         "connection.url": "jdbc:postgresql://localhost:5432/cta",
         "connection.user": "cta_admin",
         "connection.password": "chicago",
@@ -55,7 +55,7 @@ def configure_connector():
 
     # Ensure a healthy response was given
     resp.raise_for_status()
-    logging.info("Connector created successfully")
+    logging.info("-------Connector created successfully-------")
 
 
 if __name__ == "__main__":
