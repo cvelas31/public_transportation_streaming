@@ -242,6 +242,9 @@ Once the server is running, you may hit `Ctrl+C` at any time to exit.
   - Or [change compatibilities](https://docs.confluent.io/platform/current/schema-registry/develop/using.html#sr-top-level-config)
 - [Cleanup policy](https://medium.com/@sunny_81705/kafka-log-retention-and-cleanup-policies-c8d9cb7e09f8#:~:text=In%20Kafka%2C%20unlike%20other%20messaging,Its%20a%20Topic%20level%20configuration.)
 - If the setup contains less number of brokers than number of partitions it will get empty messages
+- Start Zookeper:
+  - `zookeeper-server-start /etc/kafka/zookeeper.properties`
+  - Other terminal: `kafka-server-start /etc/kafka/server.properties`
 - Connector Validation:
   - Connector can only have strings
   - `curl localhost:8083/connectors`
@@ -253,5 +256,10 @@ Once the server is running, you may hit `Ctrl+C` at any time to exit.
   - `kafka-topics --delete --topic "topic_name" --zookeeper localhost:2181`
 - Consume topic
   - `kafka-console-consumer --topic "topic_name" --bootstrap-server PLAINTEXT://localhost:9092 --from-beginning`
-- Parititons:
+  - `kafka-avro-console-consumer --topic "topic_name" --bootstrap-server PLAINTEXT://localhost:9092 --from-beginning`
+- Partititons:
   - https://www.confluent.io/blog/how-choose-number-topics-partitions-kafka-cluster/
+- On assign vs auto.offset
+  - on_assign is a callback to provide handling of customized offsets on completion of a successful partition re-assignment. auto.offset is a [policy setup](https://docs.confluent.io/platform/current/clients/consumer.html#offset-management) for a group of consumers
+- [Python Kafka client](https://www.confluent.io/blog/introduction-to-apache-kafka-for-python-programmers/?utm_medium=sem&utm_source=google&utm_campaign=ch.sem_br.nonbrand_tp.prs_tgt.kafka_mt.mbm_rgn.apac_lng.eng_dv.all&utm_term=%2Bkafka%20%2Bpython&creative=&device=c&placement=&gclid=Cj0KCQjwhIP6BRCMARIsALu9Lfnf2sDVe8Fn3QlqM4qNnzSfjvElioX3NQ6rDQP1gz7j_Iu14MpcJPsaAuzJEALw_wcB)
+- [Monitoring Kafka](https://databricks.com/blog/2017/05/18/taking-apache-sparks-structured-structured-streaming-to-production.html)
