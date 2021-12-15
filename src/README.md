@@ -252,6 +252,7 @@ Once the server is running, you may hit `Ctrl+C` at any time to exit.
   - [Topic from connect](https://docs.confluent.io/platform/current/connect/references/restapi.html#topics)
 - Topic validation
   - `kafka-topics --list --zookeeper localhost:2181`
+  - `kafka-topics --list --bootstrap-server localhost:2181`
 - Delete topics
   - `kafka-topics --delete --topic "topic_name" --zookeeper localhost:2181`
 - Consume topic
