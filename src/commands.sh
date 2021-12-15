@@ -24,3 +24,9 @@ alias kafka-topics='~/kafka_2.13-3.0.0/bin/kafka-topics.sh'
 alias kafka-cluster='~/kafka_2.13-3.0.0/bin/kafka-cluster.sh'
 alias kafka-configs='~/kafka_2.13-3.0.0/bin/kafka-configs.sh'
 alias kafka-verifiable-producer='~/kafka_2.13-3.0.0/bin/kafka-verifiable-producer.sh'
+
+
+# Remove everything
+docker kill $(docker ps -q)
+docker rm $(docker ps -a -q)
+docker volume rm $(docker volume ls -q)

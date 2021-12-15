@@ -119,4 +119,4 @@ class KafkaConsumer:
         #
         #
         if self.consumer is not None:
-            self.consumer.close();
+            self.consumer.close()

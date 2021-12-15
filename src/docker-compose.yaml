@@ -5,7 +5,7 @@
 # * Schema Registry
 # * Kafka REST Proxy
 # * Kafka Connect
-#
+# * PostgresDB
 
 version: '3.7'
 
