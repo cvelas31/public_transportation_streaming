@@ -236,12 +236,15 @@ Once the server is running, you may hit `Ctrl+C` at any time to exit.
 ## Throubleshooting
 - https://rmoff.net/2018/08/02/kafka-listeners-explained/
 - Make sure you are using the proper HOST URL
+  - In the `connector.py` change the Host URL according to the proper host.
 - If you change the schemas of avro, the registry may not allow does changes.
-  - Restart Schema Registry
+  - Restart Schema Registry TODO: How?
   - Remove Previous using API
+    - TODO: Example of how
   - Or [change compatibilities](https://docs.confluent.io/platform/current/schema-registry/develop/using.html#sr-top-level-config)
 - [Cleanup policy](https://medium.com/@sunny_81705/kafka-log-retention-and-cleanup-policies-c8d9cb7e09f8#:~:text=In%20Kafka%2C%20unlike%20other%20messaging,Its%20a%20Topic%20level%20configuration.)
 - If the setup contains less number of brokers than number of partitions it will get empty messages
+  - TODO: how to validate this?
 - Start Zookeper:
   - `zookeeper-server-start /etc/kafka/zookeeper.properties`
   - Other terminal: `kafka-server-start /etc/kafka/server.properties`
@@ -252,7 +255,7 @@ Once the server is running, you may hit `Ctrl+C` at any time to exit.
   - [Topic from connect](https://docs.confluent.io/platform/current/connect/references/restapi.html#topics)
 - Topic validation
   - `kafka-topics --list --zookeeper localhost:2181`
-  - `kafka-topics --list --bootstrap-server localhost:2181`
+  - `kafka-topics --list --bootstrap-server localhost:9092`
 - Delete topics
   - `kafka-topics --delete --topic "topic_name" --zookeeper localhost:2181`
 - Consume topic

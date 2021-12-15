@@ -22,13 +22,13 @@ def configure_connector():
         return
 
     config = {
-        "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",  # TODO
+        "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
         "key.converter": "org.apache.kafka.connect.json.JsonConverter",
         "key.converter.schemas.enable": "false",
         "value.converter": "org.apache.kafka.connect.json.JsonConverter",
         "value.converter.schemas.enable": "false",
         "topic.prefix": "com.connect.transportation.",
-        "connection.url": "jdbc:postgresql://localhost:5432/cta",
+        "connection.url": "jdbc:postgresql://postgres:5432/cta", # TODO: Change according to end
         "connection.user": "cta_admin",
         "connection.password": "chicago",
         "batch.max.rows": "500",
@@ -47,6 +47,8 @@ def configure_connector():
         "name": CONNECTOR_NAME,
         "config": config
     })
+
+
     resp = requests.post(
         KAFKA_CONNECT_URL,
         headers={"Content-Type": "application/json"},
