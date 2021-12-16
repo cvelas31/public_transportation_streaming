@@ -234,6 +234,8 @@ Once the server is running, you may hit `Ctrl+C` at any time to exit.
 
 
 ## Throubleshooting
+- Can not poll data from the broker from an external IP
+  - Change the docker External IP to the Public IP. Ex: `ec2.dsdsdsds.aws.com:9092`
 - https://rmoff.net/2018/08/02/kafka-listeners-explained/
 - Make sure you are using the proper HOST URL
   - In the `connector.py` change the Host URL according to the proper host.
@@ -267,3 +269,5 @@ Once the server is running, you may hit `Ctrl+C` at any time to exit.
   - on_assign is a callback to provide handling of customized offsets on completion of a successful partition re-assignment. auto.offset is a [policy setup](https://docs.confluent.io/platform/current/clients/consumer.html#offset-management) for a group of consumers
 - [Python Kafka client](https://www.confluent.io/blog/introduction-to-apache-kafka-for-python-programmers/?utm_medium=sem&utm_source=google&utm_campaign=ch.sem_br.nonbrand_tp.prs_tgt.kafka_mt.mbm_rgn.apac_lng.eng_dv.all&utm_term=%2Bkafka%20%2Bpython&creative=&device=c&placement=&gclid=Cj0KCQjwhIP6BRCMARIsALu9Lfnf2sDVe8Fn3QlqM4qNnzSfjvElioX3NQ6rDQP1gz7j_Iu14MpcJPsaAuzJEALw_wcB)
 - [Monitoring Kafka](https://databricks.com/blog/2017/05/18/taking-apache-sparks-structured-structured-streaming-to-production.html)
+- [Other resources](https://docs.confluent.io/platform/current/quickstart/ce-docker-quickstart.html#ce-docker-quickstart)
+  - Nice things on how to test, set up and try all the confluent environment

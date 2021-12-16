@@ -14,10 +14,13 @@ cd kafka_2.13-3.0.0
 # https://tecadmin.net/install-java-on-amazon-linux/
 sudo amazon-linux-extras install java-openjdk11
 
+# Install psql
+sudo amazon-linux-extras install postgresql10
+
 
 # Set aliases
 alias zookeeper-server-start='~/kafka_2.13-3.0.0/bin/zookeeper-server-start.sh'
-alias kafka-server-start.sh='~/kafka_2.13-3.0.0/bin/kafka-server-start.sh.sh'
+alias kafka-server-start='~/kafka_2.13-3.0.0/bin/kafka-server-start.sh'
 alias kafka-console-consumer='~/kafka_2.13-3.0.0/bin/kafka-console-consumer.sh'
 alias kafka-console-producer='~/kafka_2.13-3.0.0/bin/kafka-console-producer.sh'
 alias kafka-topics='~/kafka_2.13-3.0.0/bin/kafka-topics.sh'

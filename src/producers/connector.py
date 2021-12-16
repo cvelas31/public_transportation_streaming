@@ -28,14 +28,14 @@ def configure_connector():
         "value.converter": "org.apache.kafka.connect.json.JsonConverter",
         "value.converter.schemas.enable": "false",
         "topic.prefix": "com.connect.transportation.",
-        "connection.url": "jdbc:postgresql://postgres:5432/cta", # TODO: Change according to end
+        "connection.url": "jdbc:postgresql://postgres:5432/cta",
         "connection.user": "cta_admin",
         "connection.password": "chicago",
         "batch.max.rows": "500",
         "table.whitelist": "stations",
         "poll.interval.ms": "5000",  # Poll every 5 seconds
         "mode": "incrementing",
-        "incrementing.column.name": "stop_id"
+        "incrementing.column.name": "stop_id",
     }
     # TODO: Complete the Kafka Connect Config below.
     # Directions: Use the JDBC Source Connector to connect to Postgres. Load the `stations` table
@@ -43,11 +43,7 @@ def configure_connector():
     # Make sure to think about what an appropriate topic prefix would be, and how frequently Kafka
     # Connect should run this connector (hint: not very often!)
 
-    data = json.dumps({
-        "name": CONNECTOR_NAME,
-        "config": config
-    })
-
+    data = json.dumps({"name": CONNECTOR_NAME, "config": config})
 
     resp = requests.post(
         KAFKA_CONNECT_URL,
