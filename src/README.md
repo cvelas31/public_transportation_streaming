@@ -10,7 +10,6 @@ When the project is complete, you will be able to monitor a website to watch tra
 ## Prerequisites
 
 The following are required to complete this project:
-
 * Docker
 * Python 3.7
 * Access to a computer with a minimum of 16gb+ RAM and a 4-core CPU to execute the simulation
@@ -164,6 +163,13 @@ The following directory layout indicates the files that the student is responsib
 ```
 
 ## Running and Testing
+
+# Create ENV file
+In the same directory where the `docker-compose.yaml` is create the `.env` file with the following content.
+To get PUBLIC IP you could run `dig +short myip.opendns.com @resolver4.opendns.com`
+```bash
+PUBLIC_IPV4_DNS=ec2-34-229-241-59.compute-1.amazonaws.com
+```
 
 To run the simulation, you must first start up the Kafka ecosystem on their machine utilizing Docker Compose.
 
