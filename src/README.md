@@ -266,6 +266,7 @@ Once the server is running, you may hit `Ctrl+C` at any time to exit.
   - `kafka-topics --list --bootstrap-server localhost:9092`
 - Delete topics
   - `kafka-topics --delete --topic "topic_name" --zookeeper localhost:2181`
+  - `kafka-topics --delete --topic "topic_name" --bootstrap-server localhost:9092`
 - Consume topic
   - `kafka-console-consumer --topic "topic_name" --bootstrap-server PLAINTEXT://localhost:9092 --from-beginning`
   - `kafka-avro-console-consumer --topic "topic_name" --bootstrap-server PLAINTEXT://localhost:9092 --from-beginning`
