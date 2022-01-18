@@ -53,7 +53,36 @@ def configure_connector():
 
     # Ensure a healthy response was given
     resp.raise_for_status()
-    logging.info("-------Connector created successfully-------")
+    if resp.status_code == 201:
+        logging.info("-------Connector created successfully-------")
+
+
+def create_sql_connector(config_json_path: str):
+    """Starts and configures the Kafka Connect connector"""
+    logging.debug("Creating or updating kafka connect connector...")
+
+    data = json.loads(config_json_path)
+    print("data: ", data)
+    connector_name = data.get("name", None)
+    assert isinstance(
+        connector_name, str
+    ), "Connector name is not present, validate name is in json config"
+
+    resp = requests.get(f"{KAFKA_CONNECT_URL}/{connector_name}")
+    if resp.status_code == 200:
+        logging.debug("Connector already created skipping recreation")
+        return
+
+    resp = requests.post(
+        KAFKA_CONNECT_URL,
+        headers={"Content-Type": "application/json"},
+        data=data,
+    )
+
+    # Ensure a healthy response was given
+    resp.raise_for_status()
+    if resp.status_code == 201:
+        logging.info("-------Connector created successfully-------")
 
 
 if __name__ == "__main__":

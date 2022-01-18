@@ -7,13 +7,13 @@ from enum import IntEnum
 import logging
 import logging.config
 from pathlib import Path
-
+import os
 import pandas as pd
 
 # Import logging before models to ensure configuration is picked up
 logging.config.fileConfig(f"{Path(__file__).parents[0]}/logging.ini")
 
-from connector import configure_connector
+from connector import configure_connector, create_sql_connector
 from models import Line, Weather
 
 
@@ -60,10 +60,17 @@ class TimeSimulation:
             hour=0, minute=0, second=0, microsecond=0
         )
         logger.info("Beginning simulation, press Ctrl+C to exit at any time")
-        logger.info("loading kafka connect jdbc source connector")
+        logger.info("Loading kafka connect jdbc source connector")
         configure_connector()
 
-        logger.info("beginning cta train simulation")
+        logger.info("Loading kafka connect MySQL source connector")
+        mysql_config_connector_path = os.path.join(
+            "..", "..", "connectors", "mysql_source_connector.json"
+        )
+        assert os.path.exists(mysql_config_connector_path)
+        create_sql_connector()
+
+        logger.info("Beginning cta train simulation")
         weather = Weather(curr_time.month)
         try:
             while True:
