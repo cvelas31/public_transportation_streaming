@@ -165,10 +165,10 @@ The following directory layout indicates the files that the student is responsib
 ## Running and Testing
 
 # Create ENV file
-In the same directory where the `docker-compose.yaml` is create the `.env` file with the following content.
+In the same directory where the `docker-compose.yaml` is created, fill the `.env` file with the following content.
 To get PUBLIC IP you could run `dig +short myip.opendns.com @resolver4.opendns.com`
 ```bash
-PUBLIC_IPV4_DNS=ec2-34-229-241-59.compute-1.amazonaws.com
+PUBLIC_IPV4_DNS=54.111.111.11
 ```
 
 To run the simulation, you must first start up the Kafka ecosystem on their machine utilizing Docker Compose.
@@ -278,3 +278,8 @@ Once the server is running, you may hit `Ctrl+C` at any time to exit.
 - [Monitoring Kafka](https://databricks.com/blog/2017/05/18/taking-apache-sparks-structured-structured-streaming-to-production.html)
 - [Other resources](https://docs.confluent.io/platform/current/quickstart/ce-docker-quickstart.html#ce-docker-quickstart)
   - Nice things on how to test, set up and try all the confluent environment
+- Get inside of the MySQL docker: `docker-compose exec mysql bash -c 'mysql -u mysqluser -pmysqlpw inventory'`
+  - To avoid the AVRO schema add the following to the connector config `"key.converter.schemas.enable": false, "value.converter.schemas.enable": false,`
+- **Schema Registry:**
+  - Get topics with schema registry: `http://{IP}:8081/subjects`
+  - Get a specific schema registry: http://{IP}:8081/subjects/dbserver1-key/versions/1

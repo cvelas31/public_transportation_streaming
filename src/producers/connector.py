@@ -61,7 +61,10 @@ def create_sql_connector(config_json_path: str):
     """Starts and configures the Kafka Connect connector"""
     logging.debug("Creating or updating kafka connect connector...")
 
-    data = json.loads(config_json_path)
+    # JSON file
+    f = open(config_json_path, "r")
+    # Reading from file
+    data = json.loads(f.read())
     print("data: ", data)
     connector_name = data.get("name", None)
     assert isinstance(
@@ -76,13 +79,14 @@ def create_sql_connector(config_json_path: str):
     resp = requests.post(
         KAFKA_CONNECT_URL,
         headers={"Content-Type": "application/json"},
-        data=data,
+        data=json.dumps(data),
     )
-
     # Ensure a healthy response was given
-    resp.raise_for_status()
     if resp.status_code == 201:
         logging.info("-------Connector created successfully-------")
+    else:
+        print(resp.json())
+        resp.raise_for_status()
 
 
 if __name__ == "__main__":

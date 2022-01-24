@@ -65,11 +65,13 @@ class TimeSimulation:
 
         logger.info("Loading kafka connect MySQL source connector")
         mysql_config_connector_path = os.path.join(
-            "..", "..", "connectors", "mysql_source_connector.json"
+            "..", "connectors", "mysql_source_connector.json"
         )
         assert os.path.exists(mysql_config_connector_path)
-        create_sql_connector()
+        create_sql_connector(mysql_config_connector_path)
 
+        return
+        # Comment previous line to simulate
         logger.info("Beginning cta train simulation")
         weather = Weather(curr_time.month)
         try:

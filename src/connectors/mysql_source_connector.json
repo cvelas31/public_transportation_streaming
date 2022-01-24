@@ -10,7 +10,7 @@
         "database.server.id": "184054",
         "database.server.name": "dbserver1",
         "database.whitelist": "inventory",
-        "database.history.kafka.bootstrap.servers": "kafka-cluster:9092",
+        "database.history.kafka.bootstrap.servers": "kafka0:9092",
         "database.history.kafka.topic": "schema-changes.inventory",
         "transforms": "route",
         "transforms.route.type": "org.apache.kafka.connect.transforms.RegexRouter",
