@@ -70,6 +70,7 @@ class TimeSimulation:
         assert os.path.exists(mysql_config_connector_path)
         create_sql_connector(mysql_config_connector_path)
 
+        # TODO: Remove return
         return
         # Comment previous line to simulate
         logger.info("Beginning cta train simulation")
