@@ -280,6 +280,8 @@ Once the server is running, you may hit `Ctrl+C` at any time to exit.
   - Nice things on how to test, set up and try all the confluent environment
 - Get inside of the MySQL docker: `docker-compose exec mysql bash -c 'mysql -u mysqluser -pmysqlpw inventory'`
   - To avoid the AVRO schema add the following to the connector config `"key.converter.schemas.enable": false, "value.converter.schemas.enable": false,`
+- Get inside oracle db docker:
+  `docker-compose exec oracle_db bash -c "source /home/oracle/.bashrc; sqlplus /nolog"`
 - **Schema Registry:**
   - Get topics with schema registry: `http://{IP}:8081/subjects`
   - Get a specific schema registry: http://{IP}:8081/subjects/dbserver1-key/versions/1

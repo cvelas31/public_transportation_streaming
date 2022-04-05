@@ -89,6 +89,7 @@ services:
       - |
         echo "Installing Connector"
         confluent-hub install --no-prompt debezium/debezium-connector-mysql:1.7.0
+        confluent-hub install confluentinc/kafka-connect-oracle-cdc:2.0.0
         #
         echo "Launching Kafka Connect worker"
         /etc/confluent/docker/run &
@@ -98,6 +99,7 @@ services:
     - "kafka0"
     - "schema-registry"
     - "mysql"
+    - "oracle_db"
 
   ksql:
     image: confluentinc/cp-ksql-server:5.2.2
@@ -167,3 +169,20 @@ services:
      - MYSQL_ROOT_PASSWORD=admin123
      - MYSQL_USER=mysqluser
      - MYSQL_PASSWORD=mysqlpw
+
+  oracle_db:
+    build:
+      context: src_oracle_db
+    container_name: oracle_db
+    ports:
+     - 1521:1521
+     - 5500:5500
+    environment:
+     - ORACLE_SID=sample_sid
+     - ORACLE_PDB=sample_pdb
+     - ORACLE_PWD=sample_pwd
+     - ENABLE_ARCHIVELOG=TRUE #Enable Archive Mode (Requirement to CDC)
+    volumes:
+    - ./src_oracle_db/01-enable_archive_log.sql:/docker-entrypoint-initdb.d/01-enable_archive_log.sql
+    - ./producers/data/cta_stations.csv:/tmp/cta_stations.csv
+    - ./03-load_data.sql:/docker-entrypoint-initdb.d/03-load_data.sql
